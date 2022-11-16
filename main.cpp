@@ -20,7 +20,6 @@ int main() {
     const int     W = 3;
 
     //Variables
-    size_t        saisieUtilisateur;
     vector<int>   tabPremier;
 
     cout << "Bienvenue, ce programme vous permettra de trouver les nombres premiers dans un intervalle donne." << endl;

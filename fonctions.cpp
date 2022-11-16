@@ -125,7 +125,7 @@ vector<int> vecteurPremiers(const vector<bool>& tabCriblage){
 
     for (size_t i = 0; i < tabCriblage.size(); ++i) {
 
-        if (tabCriblage[i] == true && i >= 2){
+        if (tabCriblage[i] && i >= 2){
 
             tabPremiers.push_back(i);
         }
