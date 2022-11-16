@@ -15,20 +15,96 @@ Compilateur     : Mingw-w64 g++ 12.2.0
 
 using namespace std;
 
-void criblageTableau(vector<int> tabCriblage){
-
-
-    for (size_t i = 0; i < tabCriblage.size(); ++i){
-        if ((i+1) == 0){
-            for (unsigned long long x = i * i; x < tabCriblage.size(); x += i)
-                tabCriblage[i] = false;
+void criblageTableau(vector<bool>& tab){
+    size_t taille = tab.size();
+    for (size_t i = 2; i < taille; ++i) {
+        for (size_t j = i+1; j < taille; ++j) {
+            if (j % i == 0) {
+                 tab.at(j) = false;
+            }
         }
     }
-
-
-
 }
 
-void remplirTableau(vector<int> tabCriblage, vector<int> tabValeures){
+void afficherTableau(const vector<bool> tabCriblage, const int w, const int colonnes){
+    string str;
+    for (size_t i = 0; i < tabCriblage.size(); ++i){
+        cout << setw(w) << (tabCriblage[i]? "0" : "X");
+        if ((i+1) % colonnes == 0){
+            cout << endl;
+        }
 
+    }
+}
+
+void afficherTableau(const vector<int> tabCriblage, const int w, const int colonnes){
+    string str;
+    for (size_t i = 0; i < tabCriblage.size(); ++i){
+        cout << setw(w) << tabCriblage[i];
+        if ((i+1) % colonnes == 0){
+            cout << endl;
+        }
+
+    }
+}
+
+void viderBuffer(){
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+}
+
+
+bool recommencer() {
+    char saisieUtilisateurRecommencer;
+    do {
+        cout << endl;
+        cout << "Voulez-vous recommencer ? [O/N]" << endl;
+        cin >> saisieUtilisateurRecommencer;
+        viderBuffer();
+
+        if (toupper(saisieUtilisateurRecommencer) == 'O') {
+            return true;
+
+        } else if (toupper(saisieUtilisateurRecommencer) == 'N') {
+            return false;
+
+        } else {
+            cout << "Erreur! Veuillez saisir une valeur valide [O/N]." << endl;
+            cin >> saisieUtilisateurRecommencer;
+        }
+    } while (toupper(saisieUtilisateurRecommencer) != 'O' && toupper(saisieUtilisateurRecommencer) != 'N');
+}
+
+size_t saisie(){
+    bool   erreurFlux        = false;
+    size_t saisieUtilisateur = 0;
+
+    cout << "Veuillez entrer un nombre [2-100] :";
+    cin  >> saisieUtilisateur;
+
+
+    while(erreurFlux or saisieUtilisateur < 2 or saisieUtilisateur > 100){
+        erreurFlux = false;
+        if (cin.fail()) {
+            viderBuffer();
+            erreurFlux = true;
+        }
+        cout << "Erreur! Veuillez saisir une valeur valide." << endl;
+        cin >> saisieUtilisateur;
+        viderBuffer();
+
+    }
+
+    return  saisieUtilisateur;
+}
+
+
+vector<int> vecteurPremiers(const vector<bool>& tabCriblage){
+    vector<int> tabPremiers;
+    for (size_t i = 0; i < tabCriblage.size(); ++i) {
+        if (tabCriblage[i] == true && i >= 2){
+            tabPremiers.push_back(i);
+        }
+    }
+    return tabPremiers;
 }

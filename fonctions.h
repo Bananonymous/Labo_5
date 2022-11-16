@@ -21,9 +21,14 @@ Compilateur     : Mingw-w64 g++ 12.2.0
 
 using namespace std;
 
-void criblageTableau(vector<int> tabCriblage);
-void remplirTableau(vector<int> tabCriblage, vector<int> tabValeures);
+//////////////////////Sous-programmes//////////////////////////
 
-
+void        criblageTableau (vector<bool>& tabCriblage);
+void        afficherTableau (vector<bool> tabCriblage, int w, int colonnes);
+void        afficherTableau (vector<int> tabCriblage,  int w, int colonnes);
+vector<int> vecteurPremiers (const vector<bool>& tabCriblage);
+size_t      saisie();
+void        viderBuffer();
+bool        recommencer();
 
 #endif //LABO_05_CRIBLE_ERATOSTHENE_GROUPE_F_FONCTIONS_H
