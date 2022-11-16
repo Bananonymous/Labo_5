@@ -15,20 +15,21 @@ Compilateur     : Mingw-w64 g++ 12.2.0
 
 int main() {
 
+    //Constantes
     const int     COLONNES = 10;
     const int     W = 3;
 
+    //Variables
     size_t        saisieUtilisateur;
     vector<int>   tabPremier;
 
     cout << "Bienvenue, ce programme vous permettra de trouver les nombres premiers dans un intervalle donne." << endl;
 
     do{
-        //Redemande une saisie tant que la valeure sort de l'intervalle [2,100]
-        //Gestion des erreurs de flux
+        //Créer un vecteur booléen de taille choisie par l'utilisateur dans l'intervale [2,100]
+        //Redemande une saisie tant que la valeur sort de l'intervalle ou casse le flux
         vector<bool> tabCriblage(saisie(), true);
 
-        //Appel de la fonction de cribage du tableau en fonction des nb premiers
         criblageTableau(tabCriblage);
 
         cout << "Affichage du tableau post-criblage : " << endl;
